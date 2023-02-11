@@ -1,0 +1,16 @@
+openai
+numpy
+yt-dlp
+spacy
+openai-whisper
+more-itertools
+transformers>=4.19.0
+ffmpeg-python==0.2.0
+streamlit
+moviepy
+opencv-python
+lemminflect
+symspellpy
+youtube_title_parse
+Pillow
+youtube-search
