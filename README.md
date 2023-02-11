@@ -3,6 +3,8 @@
 ## Overview
 This Python application generates a music video from a song by extracting audio from a YouTube video, transcribing the lyrics using OpenAI's WhisperX, and generating images for each lyrics using DALLE2. The user can choose the style for the images, and the application is built with a Streamlit user interface for easy use.
 
+![diagram](assets/diag.jpg)
+
 ## Features
 - Allows Youtube URL or Song Title
 - Up to Eight Minutes Song Duration
@@ -36,7 +38,7 @@ This Python application generates a music video from a song by extracting audio 
 - Go to localhost:8501 on your browser
 
 ## Deploy using Docker
-- Build docker `docker build -t music_video:latest`
+- Build docker `docker build -t music_video:latest .`
 - Run via
     ```
         docker run -it --gpus=all -e "API_KEY=YOUR_API_KEY" -p 8501:8501 music_video:latest
