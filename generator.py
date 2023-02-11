@@ -1,5 +1,7 @@
 import os
 
+from tqdm import tqdm
+
 from dalle import DALLEGenerator
 
 
@@ -20,7 +22,7 @@ def generate_from_lyrics(
 
     artstyle = artstyle.lower()
 
-    for i, ap in enumerate(aligned_lyrics):
+    for i, ap in tqdm(enumerate(aligned_lyrics)):
         filename = os.path.join(out_dir, str(i).zfill(6) + ".jpg")
         aligned_lyrics[i]["filename"] = filename
         lyric = ap["lyrics"]

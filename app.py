@@ -27,7 +27,7 @@ WHISPER_MODEL = "medium.en"
 DOWNLOAD_DIR = os.path.join(os.path.expanduser("~"), ".cache")
 
 
-@st.cache()
+@st.cache_resource()
 def load_application_model(model_name=WHISPER_MODEL):
     model = load_whisper(model_name, download_root=DOWNLOAD_DIR)
     return model
@@ -37,12 +37,11 @@ model = load_application_model()
 generator = DALLEGenerator()
 
 st.title("Smart Music Video Creator")
-st.header("Create an alternative generated art music video")
+st.header("Generate Music Video with DALLE")
 st.text("By James Andrew")
 
-st.info("Maximum Song Length is eight minutes.", icon="🤖")
-st.warning(
-    "I'm using a small server. You may encounter errors as the concurrent users increase. Apologies!",
+st.info(
+    "Maximum Song Length is eight minutes. I'm using a small server. You may encounter errors as the concurrent users increase. Apologies!",
     icon="🤖",
 )
 
@@ -90,8 +89,8 @@ if st.button("Submit"):
     )
 
     # Display info
-    st.header(title)
-    st.image(thumbnail, width=480)
+    st.text(title)
+    st.image(thumbnail, width=512)
 
     # Create output directory
     hashname = abs(hash(ytd.title)) % (10**8)
