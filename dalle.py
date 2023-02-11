@@ -42,11 +42,18 @@ class DALLEGenerator:
             STYLE_MAPPING.get(style, "impressionist"), prompt
         )
 
-        response = openai.Image.create(
-            prompt=prompt, n=1, size="512x512", response_format="b64_json"
-        )
+        try:
+            response = openai.Image.create(
+                prompt=prompt, n=1, size="512x512", response_format="b64_json"
+            )
 
-        b64 = response["data"][0]["b64_json"]
-        image_bytes = base64.b64decode(b64)
-        image = Image.open(io.BytesIO(image_bytes))
+            b64 = response["data"][0]["b64_json"]
+            image_bytes = base64.b64decode(b64)
+            image = Image.open(io.BytesIO(image_bytes))
+        except Exception:
+            # Create black placeholder image
+            image = Image.new("RGB", (512, 512))
+
+        if not image:
+            image = Image.new("RGB", (512, 512))
         return image
